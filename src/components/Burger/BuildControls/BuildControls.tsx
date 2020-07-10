@@ -17,6 +17,7 @@ type mainControls = {
   disabled: { [key: string]: boolean }[];
   price: number;
   checkOut: boolean;
+  purchasing: () => void;
 };
 
 const buildControls = (props: mainControls) => {
@@ -40,7 +41,11 @@ const buildControls = (props: mainControls) => {
           />
         );
       })}
-      <button className={styles.OrderButton} disabled={!props.checkOut}>
+      <button
+        onClick={props.purchasing}
+        className={styles.OrderButton}
+        disabled={!props.checkOut}
+      >
         ORDER NOW
       </button>
     </div>

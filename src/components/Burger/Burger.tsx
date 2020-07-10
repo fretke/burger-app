@@ -13,8 +13,6 @@ type burgerProps = {
 };
 
 const burger = (props: burgerProps) => {
-  console.log(props.ingredients, "ingredients");
-
   let hasIngredients = false;
 
   const transformedIngredients = Object.keys(props.ingredients).map((igKey) => {
@@ -29,11 +27,6 @@ const burger = (props: burgerProps) => {
       });
     }
   });
-
-  //   const anotherTransformation = Object.keys(props.ingredients).map((key) => {
-
-  //   });
-  //   console.log(anotherTransformation);
 
   transformedIngredients.forEach((ingredient) => {
     if (ingredient && ingredient.length > 0) hasIngredients = true;

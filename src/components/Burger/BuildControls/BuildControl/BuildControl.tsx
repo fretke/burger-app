@@ -5,14 +5,11 @@ import { burgerIngredients } from "../../../../containers/BurgerBuilder/BurgerBu
 type buildInterface = {
   label: string;
   disable: { [key: string]: boolean };
-  added: any; //need to change
-  removed: any; //need to change
-  //   added: (type: burgerIngredients) => any;
+  added: () => void;
+  removed: () => void;
 };
 
 const buildControl = (props: buildInterface) => {
-  console.log(props.disable, "shoud the less button be disabled?");
-
   return (
     <div className={styles.BuildControl}>
       <div className={styles.Label}>{props.label}</div>

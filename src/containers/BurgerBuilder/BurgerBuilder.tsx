@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Aux from "../../hoc/Auxillary";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 export interface ingrInterface {
   salad: number;
@@ -30,6 +32,7 @@ interface burgerState {
   };
   totalPrice: number;
   purchaseable: boolean;
+  purchasing: boolean;
 }
 
 class BurgerBuilder extends Component {
@@ -42,16 +45,38 @@ class BurgerBuilder extends Component {
     },
     totalPrice: 4,
     purchaseable: false,
+    purchasing: false,
   };
 
+  // getIngrArray = () => {
+  //   const ingArr: { [key: string]: number }[] = [];
+  //   for (let ing in this.state.ingredients) {
+  //     // console.log(ing, "ingreident in getIngrArray");
+
+  //     ingArr.push({ [ing]: this.state.ingredients[ing as burgerIngredients] });
+  //   }
+  //   console.log(ingArr, "array in getIngrArray");
+
+  //   return ingArr;
+  // };
+
   updatePurchaseState = (ingredients: ingrInterface) => {
-    for (const ing in this.state.ingredients) {
-      if (this.state.ingredients[ing as burgerIngredients] > 0) {
+    for (const ing in ingredients) {
+      if (ingredients[ing as burgerIngredients] > 0) {
         this.setState({ purchaseable: true });
         return;
       }
     }
     this.setState({ purchaseable: false });
+  };
+
+  updatePurchasing = (): void => {
+    const prevValue = this.state.purchasing;
+    this.setState({ purchasing: !prevValue });
+  };
+
+  purchaseContinueHandler = (): void => {
+    alert("To be continued");
   };
 
   addIngredientHandler = (type: burgerIngredients): void => {
@@ -89,19 +114,26 @@ class BurgerBuilder extends Component {
       }
     }
 
-    console.log(disabledInfo);
-
     // this.updatePurchaseState();
 
     return (
       <Aux>
         <Burger ingredients={this.state.ingredients} />
+        <Modal modalClosed={this.updatePurchasing} show={this.state.purchasing}>
+          <OrderSummary
+            totalPrice={this.state.totalPrice}
+            continueWithOrder={this.purchaseContinueHandler}
+            cancelOrder={this.updatePurchasing}
+            ing={this.state.ingredients}
+          />
+        </Modal>
         <BuildControls
           ingredientAdded={this.addIngredientHandler}
           ingredientsRemoved={this.removeIngredientHandler}
           disabled={disabledInfo}
           price={this.state.totalPrice}
           checkOut={this.state.purchaseable}
+          purchasing={this.updatePurchasing}
         />
       </Aux>
     );

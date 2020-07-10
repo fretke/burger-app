@@ -1,0 +1,16 @@
+.Button {
+  cursor: pointer;
+  padding: 10%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  font: inherit;
+  font-weight: bold;
+}
+.Success {
+  color: green;
+}
+.Danger {
+  color: red;
+}
