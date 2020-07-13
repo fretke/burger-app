@@ -11,7 +11,10 @@ type modalProps = {
 
 class Modal extends Component<modalProps> {
   shouldComponentUpdate(nextProps: modalProps) {
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children
+    );
   }
 
   render() {
