@@ -5,10 +5,10 @@ import BuildControl from "./BuildControl/BuildControl";
 import { burgerIngredients } from "../../../containers/BurgerBuilder/BurgerBuilder";
 
 const control = [
-  { label: "Salad", type: "salad" },
   { label: "Bacon", type: "bacon" },
   { label: "Cheese", type: "cheese" },
   { label: "Meat", type: "meat" },
+  { label: "Salad", type: "salad" },
 ];
 
 type mainControls = {

@@ -55,6 +55,8 @@ const withErrorHandler = (
         showErr = true;
       }
 
+      // console.log(this.props, "props in withErrorHandler HOC");
+
       return (
         <Aux>
           <Modal show={showErr} modalClosed={this.closeErr}>

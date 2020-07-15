@@ -1,6 +1,6 @@
 .Button {
   cursor: pointer;
-  padding: 10%;
+  padding: 1%;
   background-color: transparent;
   border: none;
   color: white;
@@ -13,4 +13,9 @@
 }
 .Danger {
   color: red;
+}
+
+.Button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
 }

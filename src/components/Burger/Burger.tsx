@@ -6,7 +6,7 @@ import BurgerIngredient from "./BurgerIngredients/BurgerIngredient";
 //   ingredients: ingrInterface;
 // };
 
-type burgerIngredients = "salad" | "bacon" | "cheese" | "meat";
+export type burgerIngredients = "salad" | "bacon" | "cheese" | "meat";
 
 type burgerProps = {
   ingredients: { [key in burgerIngredients]: number };

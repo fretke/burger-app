@@ -1,16 +1,19 @@
 import React from "react";
 
 import styles from "./NavigationItems.module.css";
+import { NavLink } from "react-router-dom";
 
 const navigationItems = () => (
   <ul className={styles.NavItems}>
     <li className={styles.NavItem}>
-      <a href="/" className={styles.active}>
+      <NavLink activeClassName={styles.active} exact to="/">
         Burger Builder
-      </a>
+      </NavLink>
     </li>
     <li className={styles.NavItem}>
-      <a href="/">Checkout</a>
+      <NavLink activeClassName={styles.active} to="/orders">
+        Orders
+      </NavLink>
     </li>
   </ul>
 );
