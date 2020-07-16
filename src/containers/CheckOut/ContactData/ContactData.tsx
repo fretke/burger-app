@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from "react";
+import React, { Component, ChangeEvent, Dispatch } from "react";
 import Button from "../../../components/UI/Button/Button";
 import styles from "./ContactData.module.css";
 import axios from "../../../axios-orders";
@@ -7,9 +7,18 @@ import Input from "../../../components/UI/Input/Input";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import { RouteComponentProps } from "react-router-dom";
 
+import { connect } from "react-redux";
+import {
+  burgerBuilderState,
+  ingrType,
+  reRenderActionType,
+} from "../../../store/reducer";
+import * as actionTypes from "../../../store/actions";
+
 interface dataProps extends RouteComponentProps {
-  ingredients: { [key: string]: number };
+  ingredients: ingrType;
   total: number;
+  onNewRender: () => void;
 }
 
 type contactDataState = {
@@ -130,6 +139,7 @@ class ContactData extends Component<dataProps> {
       .post("orders.json", order)
       .then((res) => {
         this.setState({ loading: false });
+        this.props.onNewRender();
         this.props.history.push("/");
       })
       .catch((err) => {
@@ -228,4 +238,21 @@ class ContactData extends Component<dataProps> {
   }
 }
 
-export default ContactData;
+const mapStateToProps = (state: burgerBuilderState) => {
+  return {
+    ingredients: state.ingredients,
+    total: state.totalPrice,
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<reRenderActionType>) => {
+  return {
+    onNewRender: () => {
+      dispatch({
+        type: actionTypes.RERENDER_INGREDIENTS,
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactData);

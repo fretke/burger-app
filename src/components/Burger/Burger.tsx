@@ -9,7 +9,8 @@ import BurgerIngredient from "./BurgerIngredients/BurgerIngredient";
 export type burgerIngredients = "salad" | "bacon" | "cheese" | "meat";
 
 type burgerProps = {
-  ingredients: { [key in burgerIngredients]: number };
+  // ingredients: { [key in burgerIngredients]: number };
+  ingredients: { [ing: string]: number };
 };
 
 const burger = (props: burgerProps) => {

@@ -2,12 +2,13 @@ import React from "react";
 
 import Burger from "../../Burger/Burger";
 import { burgerIngredients } from "../../Burger/Burger";
+import { ingrType } from "../../../store/reducer";
 
 import Button from "../../UI/Button/Button";
 import styles from "./CheckoutSummary.module.css";
 
 type checkoutProps = {
-  ingredients: { [key in burgerIngredients]: number };
+  ingredients: ingrType;
   goBack: () => void;
   continue: () => void;
 };

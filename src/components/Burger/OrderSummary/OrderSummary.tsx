@@ -7,7 +7,8 @@ import Button from "../../UI/Button/Button";
 type summaryProps = {
   //   ing: { [key: string]: number }[];
   totalPrice: number;
-  ing: { [key in burgerIngredients]: number };
+  // ing: { [key in burgerIngredients]: number };
+  ing: { [ing: string]: number };
   cancelOrder?: () => void;
   continueWithOrder?: () => void;
 };
